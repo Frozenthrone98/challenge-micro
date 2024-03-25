@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: ms-customer-management
+
+  #Configuraciones de config-server
+  cloud:
+    config:
+      uri: http://config-server:9000
+      profile: dev
+      enabled: true
+
