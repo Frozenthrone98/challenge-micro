@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: ms-config-server
+  cloud:
+    config:
+      server:
+        git:
+          clone-on-start: true
+          uri: https://github.com/Frozenthrone98/config-sever-files-challenge.git
+          default-label: main
+          refresh-rate: 3600
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    hostname: localhost
+
+
+server:
+  port: 9000
