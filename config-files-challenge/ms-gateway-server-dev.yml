@@ -1,0 +1,62 @@
+#Configuraciones de eureka-server
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+
+server:
+  port: 9081
+
+# Circuit Breaker configuration
+resilience4j:
+  circuitbreaker:
+    configs:
+      circuitBreakerCustomer:
+        slidingWindowSize: 10
+        failureRateThreshold: 30
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 8
+        slowCallDurationThreshold: 200ms
+        slowCallRateThreshold: 50
+        
+    instances:
+      customer-service-cb:
+        base-config: circuitBreakerCustomer
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id : ms-customer-management
+          uri: lb://ms-customer-management
+          predicates:
+            - Path=/api/ms-customer-management/**
+          filters:
+            - StripPrefix=2
+            - name: CircuitBreaker
+              args:                              
+                name: customer-service-cb
+                statusCodes: 400, 401, 403, 500, 503, 504
+                fallbackUri: forward:/api/ms-customer-alternative/api/v1/customers
+
+        - id: ms-account-management
+          uri: lb://ms-account-management
+          predicates:
+            - Path=/api/ms-account-management/**
+          filters:
+            - StripPrefix=2 
+
+        - id: ms-customer-alternative
+          uri: lb://ms-customer-alternative
+          predicates:
+            - Path=/api/ms-customer-alternative/api/v1/customers
+          filters:
+            - StripPrefix=2            
+
+#Configuraciones de zipkin para visualizar la trazabilidad        
+management:
+  tracing:
+    sampling:
+      probability: 1.0            

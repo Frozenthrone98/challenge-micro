@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: customersdb
+      MYSQL_USER: aldo
+      MYSQL_PASSWORD: mamani
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  mysql-alternative:
+    image: mysql:8.0
+    container_name: my-mysql-alternative
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: customersalternativedb
+      MYSQL_USER: aldo
+      MYSQL_PASSWORD: mamani
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data/mysql2/:/var/lib/mysql
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=transactionsdb
+      - POSTGRES_USER=aldo
+      - POSTGRES_PASSWORD=mamani
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+
+  zipkin:
+     image: ghcr.io/openzipkin/zipkin-slim
+     container_name: local-zipkin
+     environment:
+       - STORAGE_TYPE=mem
+     ports:
+       - "9411:9411"
+
+volumes:
+  oracle-data:
+  oracle-backup:

@@ -1,0 +1,33 @@
+#Configuraciones de eureka-server
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+
+server:
+  port: 8095
+
+api.customer.path: http://customer-service:8085/api/v1/customers/
+
+#Configuraciones de conexión a la bd
+spring:
+  datasource:
+    username: aldo
+    password: mamani
+    url: jdbc:postgresql://postgres:5432/transactionsdb
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    defer-datasource-initialization: true  
+
+#Configuraciones de zipkin para visualizar la trazabilidad        
+management:
+  tracing:
+    sampling:
+      probability: 1.0

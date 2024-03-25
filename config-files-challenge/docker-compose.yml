@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  eureka-server:
+    image: ms-eureka-server:devsu
+    ports:
+      - "8761:8761"
+
+  config-server:
+    image: ms-config-server:devsu
+    ports:
+      - "9000:9000"
+    depends_on:
+      - eureka-server
+
+  gateway-server:
+    image: ms-gateway-server:devsu
+    ports:
+      - "9081:9081"
+    depends_on:
+      - eureka-server
+      - config-server      
+
+  customer-service:
+    image: ms-customer-management:devsu
+      ports:
+        - "8085:8085"
+      depends_on:
+        - eureka-server
+        - config-server 
+
+  account-service:
+    image: ms-account-management:devsu
+    ports:
+      - "8095:8095"
+    depends_on:
+      - eureka-server
+      - config-server 
+
+  customer-alternative:
+    image: ms-customer-alternative:devsu
+      ports:
+        - "8086:8086"
+      depends_on:
+        - eureka-server
+        - config-server 

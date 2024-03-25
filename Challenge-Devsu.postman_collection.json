@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "b6eaaa36-6e6b-4b5a-bbf2-03b86e4888f1",
+		"name": "Challenge-Devsu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "7407851"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "customer-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"mi_contraseña_asdw\",\r\n  \"fullName\": \"Juan Per\",\r\n  \"gender\": \"Masculino\",\r\n  \"age\": 30,\r\n  \"identificationNumber\": \"123451789\",\r\n  \"address\": \"Calle Principal 123, Lima, Perú\",\r\n  \"phoneNumber\": \"987654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8085/api/v1/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8085/api/v1/customers/1c7c05bd-9960-428a-a629-b0f729f5756f"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-updateStatus",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/api/v1/customers/43afe536-8f6c-4cb1-bdaa-856ebe6fa979?status=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"43afe536-8f6c-4cb1-bdaa-856ebe6fa979"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"password\": \"mi_contraseña_cambiada3\",\r\n    \"status\": true,\r\n    \"fullName\": \"Juan Per\",\r\n    \"gender\": \"Femenino\",\r\n    \"age\": 10,\r\n    \"identificationNumber\": \"1234569\",\r\n    \"address\": \"Calle Principal 123, Lima\",\r\n    \"phoneNumber\": \"1234657\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8085/api/v1/customers/43afe536-8f6c-4cb1-bdaa-856ebe6fa979"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8085/api/v1/customers/5e62bd7c-2d29-4dcd-9c6d-6c99abea6df7"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8085/api/v1/customers"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "account-findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8095/api/v1/accounts"
+					},
+					"response": []
+				},
+				{
+					"name": "account-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNumber\": \"1234567891123\",\r\n    \"accountTypeId\": 2,\r\n    \"initialBalance\": 100.00,\r\n    \"customerId\": \"1c7c05bd-9960-428a-a629-b0f729f5756f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8095/api/v1/accounts"
+					},
+					"response": []
+				},
+				{
+					"name": "account-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {        \r\n        \"accountNumber\": \"987654123\",\r\n        \"accountTypeId\": 2,\r\n        \"initialBalance\": 300.00,\r\n        \"customerId\": \"0801cd5e-61bc-4c42-8132-deaa969a116c\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8095/api/v1/accounts/29e684b9-61c1-4c5b-bfa0-3bc26c61afbe"
+					},
+					"response": []
+				},
+				{
+					"name": "account-disable",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": "localhost:8095/api/v1/accounts/17dacdef-19ef-44e6-81d3-a1bed6be74d5"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movement",
+			"item": [
+				{
+					"name": "movement-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"movementTypeId\": 2,\r\n  \"value\": 1000,  \r\n  \"accountId\": \"0694ec7d-f23b-4bad-bbd5-3fc703cdb044\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8095/api/v1/movements"
+					},
+					"response": []
+				},
+				{
+					"name": "movements-byDateAndCustomer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8095/api/v1/movements/reports?start=2024-03-21&end=2024-03-24&customerId=b1f6e4e0-3a9b-4b5d-9c8a-2f6a8e1d9f1f",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"api",
+								"v1",
+								"movements",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "2024-03-21"
+								},
+								{
+									"key": "end",
+									"value": "2024-03-24"
+								},
+								{
+									"key": "customerId",
+									"value": "b1f6e4e0-3a9b-4b5d-9c8a-2f6a8e1d9f1f"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gateway",
+			"item": [
+				{
+					"name": "customer-alternative",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9081/api/ms-customer-alternative/api/v1/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-management",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9081/api/ms-customer-management/api/v1/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "accounts-management",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9081/api/ms-account-management/api/v1/accounts"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer-Alternative",
+			"item": [
+				{
+					"name": "customer-alt-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"mi_contraseña_asdw\",\r\n  \"fullName\": \"Juan Per\",\r\n  \"gender\": \"Masculino\",\r\n  \"age\": 30,\r\n  \"identificationNumber\": \"123451789\",\r\n  \"address\": \"Calle Principal 123, Lima, Perú\",\r\n  \"phoneNumber\": \"987654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8086/api/v1/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-alt-getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8086/api/v1/customers/1c7c05bd-9960-428a-a629-b0f729f5756f"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-alt-updateStatus",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8086/api/v1/customers/43afe536-8f6c-4cb1-bdaa-856ebe6fa979?status=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"43afe536-8f6c-4cb1-bdaa-856ebe6fa979"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer-alt-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"password\": \"mi_contraseña_cambiada3\",\r\n    \"status\": true,\r\n    \"fullName\": \"Juan Per\",\r\n    \"gender\": \"Femenino\",\r\n    \"age\": 10,\r\n    \"identificationNumber\": \"1234569\",\r\n    \"address\": \"Calle Principal 123, Lima\",\r\n    \"phoneNumber\": \"1234657\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8086/api/v1/customers/43afe536-8f6c-4cb1-bdaa-856ebe6fa979"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-alt-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8086/api/v1/customers/5e62bd7c-2d29-4dcd-9c6d-6c99abea6df7"
+					},
+					"response": []
+				},
+				{
+					"name": "customer-alt-findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8086/api/v1/customers"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
